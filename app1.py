@@ -26,7 +26,7 @@ st.markdown(
 # =====================================================
 @st.cache_data
 def load_data():
-    df = pd.read_csv("0210ce92-a19a-457d-8afc-faab602ec0fb.csv")
+    df = pd.read_csv("KFC_Past_Sales_Dataset.csv")
     return df
 
 df = load_data()
@@ -220,3 +220,4 @@ st.markdown("""
 • A small number of branches generate a large share of revenue  
 • Data-driven insights can support **pricing, expansion, and marketing strategy**
 """)
+
