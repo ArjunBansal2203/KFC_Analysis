@@ -178,18 +178,34 @@ with tab3:
     )
 
     st.plotly_chart(fig5, use_container_width=True)
-
-    st.subheader("Sales Distribution")
-
+    
+    st.subheader("📊 Sales Distribution")
+    
     fig6 = px.histogram(
         filtered_df,
         x="Sales",
-        nbins=40,
-        title="Distribution of Sales Values",
+        nbins=30,
+        histnorm="probability density",
+        opacity=0.75,
+        title="Sales Distribution Across All Branches",
         template="plotly_white"
     )
-
+    
+    fig6.update_traces(
+        marker_color="#4C78A8",
+        marker_line_width=1,
+        marker_line_color="white"
+    )
+    
+    fig6.update_layout(
+        xaxis_title="Sales Amount",
+        yaxis_title="Density",
+        bargap=0.05,
+        title_font_size=20
+    )
+    
     st.plotly_chart(fig6, use_container_width=True)
+
 
 # =====================================================
 # SIMPLE PREDICTION SECTION
@@ -221,6 +237,7 @@ st.markdown("""
 • A small number of branches generate a large share of revenue  
 • Data-driven insights can support **pricing, expansion, and marketing strategy**
 """)
+
 
 
 
