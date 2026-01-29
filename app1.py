@@ -124,16 +124,15 @@ with tab1:
 with tab2:
     st.subheader("Customer Volume vs Sales")
 
-fig3 = px.scatter(
-    filtered_df,
-    x="Customers",
-    y="Sales",
-    color="Country",
-    trendline="ols",
-    opacity=0.7,
-    title="Relationship Between Customers and Sales",
-    template="plotly_white"
-)
+    fig3 = px.scatter(
+        filtered_df,
+        x="Customers",
+        y="Sales",
+        color="Country",
+        opacity=0.7,
+        title="Relationship Between Customers and Sales",
+        template="plotly_white"
+    )
 
 
 
@@ -222,5 +221,6 @@ st.markdown("""
 • A small number of branches generate a large share of revenue  
 • Data-driven insights can support **pricing, expansion, and marketing strategy**
 """)
+
 
 
