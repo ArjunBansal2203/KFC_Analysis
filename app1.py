@@ -34,24 +34,59 @@ df = load_data()
 # =====================================================
 # SIDEBAR FILTERS
 # =====================================================
-st.sidebar.header("🎛️ Filter Controls")
+st.sidebar.header("🎛️ Dashboard Filters")
 
+# Country filter
 country_filter = st.sidebar.multiselect(
-    "Select Countries",
+    "Select Country(s)",
     options=sorted(df["Country"].unique()),
     default=sorted(df["Country"].unique())
 )
 
-year_filter = st.sidebar.slider(
+# Year range filter
+year_range = st.sidebar.slider(
     "Select Year Range",
     int(df["Year"].min()),
     int(df["Year"].max()),
-    (2018, 2024)
+    (int(df["Year"].min()), int(df["Year"].max()))
 )
 
+# Month filter
+month_filter = st.sidebar.multiselect(
+    "Select Month(s)",
+    options=sorted(df["Month"].unique()),
+    default=sorted(df["Month"].unique())
+)
+
+# Marketing spend filter
+marketing_range = st.sidebar.slider(
+    "Marketing Spend Range",
+    int(df["Marketing_Spend"].min()),
+    int(df["Marketing_Spend"].max()),
+    (
+        int(df["Marketing_Spend"].min()),
+        int(df["Marketing_Spend"].max())
+    )
+)
+
+# Customer volume filter
+customer_range = st.sidebar.slider(
+    "Customer Count Range",
+    int(df["Customers"].min()),
+    int(df["Customers"].max()),
+    (
+        int(df["Customers"].min()),
+        int(df["Customers"].max())
+    )
+)
+
+# Apply all filters
 filtered_df = df[
     (df["Country"].isin(country_filter)) &
-    (df["Year"].between(year_filter[0], year_filter[1]))
+    (df["Year"].between(year_range[0], year_range[1])) &
+    (df["Month"].isin(month_filter)) &
+    (df["Marketing_Spend"].between(marketing_range[0], marketing_range[1])) &
+    (df["Customers"].between(customer_range[0], customer_range[1]))
 ]
 
 # =====================================================
@@ -237,6 +272,7 @@ st.markdown("""
 • A small number of branches generate a large share of revenue  
 • Data-driven insights can support **pricing, expansion, and marketing strategy**
 """)
+
 
 
 
