@@ -129,10 +129,12 @@ fig3 = px.scatter(
     x="Customers",
     y="Sales",
     color="Country",
+    trendline="ols",
     opacity=0.7,
     title="Relationship Between Customers and Sales",
     template="plotly_white"
 )
+
 
 
     st.plotly_chart(fig3, use_container_width=True)
