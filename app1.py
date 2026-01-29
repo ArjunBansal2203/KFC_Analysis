@@ -15,7 +15,7 @@ st.set_page_config(
 # =====================================================
 # TITLE & INTRO
 # =====================================================
-st.title("🍔 Global Fast-Food Sales Analytics Dashboard")
+st.title("🍔 KFC Global Sales Analytics Dashboard")
 st.markdown(
     "An interactive business intelligence dashboard exploring **sales performance, "
     "customer behavior, marketing efficiency, and growth patterns** across countries (2018–2024)."
@@ -272,6 +272,7 @@ st.markdown("""
 • A small number of branches generate a large share of revenue  
 • Data-driven insights can support **pricing, expansion, and marketing strategy**
 """)
+
 
 
 
