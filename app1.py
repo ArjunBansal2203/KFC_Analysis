@@ -169,9 +169,9 @@ with tab2:
     #     template="plotly_white"
     # )
 
-        filtered_df["Customer_Bin"] = pd.qcut(
-        filtered_df["Customers"],
-        20
+    filtered_df["Customer_Bin"] = pd.qcut(
+    filtered_df["Customers"],
+    20
     )
     
     customer_sales = (
@@ -299,6 +299,7 @@ st.markdown("""
 • A small number of branches generate a large share of revenue  
 • Data-driven insights can support **pricing, expansion, and marketing strategy**
 """)
+
 
 
 
