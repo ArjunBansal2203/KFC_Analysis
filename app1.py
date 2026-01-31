@@ -169,29 +169,35 @@ with tab2:
     #     template="plotly_white"
     # )
 
-    fig3 = px.scatter(
-    filtered_df,
-    x="Customers",
-    y="Sales",
-    opacity=0.4,
-    title="Relationship Between Customer Volume and Sales",
-    template="plotly_white"
+        filtered_df["Customer_Bin"] = pd.qcut(
+        filtered_df["Customers"],
+        20
     )
     
-    fig3.add_traces(
-        px.line(
-            filtered_df.sort_values("Customers"),
-            x="Customers",
-            y=filtered_df.sort_values("Customers")["Sales"]
-                      .rolling(300, min_periods=1).mean()
-        ).data
+    customer_sales = (
+        filtered_df
+        .groupby("Customer_Bin")["Sales"]
+        .mean()
+        .reset_index()
     )
     
-    fig3.update_layout(
+    customer_sales["Customer_Mid"] = customer_sales["Customer_Bin"].apply(
+        lambda x: x.mid
+    )
+    
+    fig1 = px.line(
+        customer_sales,
+        x="Customer_Mid",
+        y="Sales",
+        markers=True,
+        title="Average Sales by Customer Volume",
+        template="plotly_white"
+    )
+    
+    fig1.update_layout(
         xaxis_title="Number of Customers",
-        yaxis_title="Total Sales"
+        yaxis_title="Average Sales"
     )
-
     st.plotly_chart(fig3, use_container_width=True)
 
     st.subheader("Marketing Spend Efficiency")
@@ -293,6 +299,7 @@ st.markdown("""
 • A small number of branches generate a large share of revenue  
 • Data-driven insights can support **pricing, expansion, and marketing strategy**
 """)
+
 
 
 
