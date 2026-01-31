@@ -185,7 +185,7 @@ with tab2:
         lambda x: x.mid
     )
     
-    fig1 = px.line(
+    fig3 = px.line(
         customer_sales,
         x="Customer_Mid",
         y="Sales",
@@ -194,7 +194,7 @@ with tab2:
         template="plotly_white"
     )
     
-    fig1.update_layout(
+    fig3.update_layout(
         xaxis_title="Number of Customers",
         yaxis_title="Average Sales"
     )
@@ -299,6 +299,7 @@ st.markdown("""
 • A small number of branches generate a large share of revenue  
 • Data-driven insights can support **pricing, expansion, and marketing strategy**
 """)
+
 
 
 
