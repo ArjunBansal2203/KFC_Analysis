@@ -159,17 +159,38 @@ with tab1:
 with tab2:
     st.subheader("Customer Volume vs Sales")
 
+    # fig3 = px.scatter(
+    #     filtered_df,
+    #     x="Customers",
+    #     y="Sales",
+    #     color="Country",
+    #     opacity=0.7,
+    #     title="Relationship Between Customers and Sales",
+    #     template="plotly_white"
+    # )
+
     fig3 = px.scatter(
-        filtered_df,
-        x="Customers",
-        y="Sales",
-        color="Country",
-        opacity=0.7,
-        title="Relationship Between Customers and Sales",
-        template="plotly_white"
+    filtered_df,
+    x="Customers",
+    y="Sales",
+    opacity=0.4,
+    title="Relationship Between Customer Volume and Sales",
+    template="plotly_white"
     )
-
-
+    
+    fig3.add_traces(
+        px.line(
+            filtered_df.sort_values("Customers"),
+            x="Customers",
+            y=filtered_df.sort_values("Customers")["Sales"]
+                      .rolling(300, min_periods=1).mean()
+        ).data
+    )
+    
+    fig3.update_layout(
+        xaxis_title="Number of Customers",
+        yaxis_title="Total Sales"
+    )
 
     st.plotly_chart(fig3, use_container_width=True)
 
@@ -272,6 +293,7 @@ st.markdown("""
 • A small number of branches generate a large share of revenue  
 • Data-driven insights can support **pricing, expansion, and marketing strategy**
 """)
+
 
 
 
